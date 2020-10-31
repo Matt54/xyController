@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var conductor: Conductor
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        GeometryReader { geometry in
+            HStack{
+                Spacer()
+                Pad()
+                    .frame(width: 100, height: 100)
+                Spacer()
+            }
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(Conductor.shared)
     }
 }

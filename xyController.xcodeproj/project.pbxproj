@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,9 @@
 		4FF328DA254CD5CB007BA843 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF328D9254CD5CB007BA843 /* ContentView.swift */; };
 		4FF328DC254CD5CB007BA843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF328DB254CD5CB007BA843 /* Assets.xcassets */; };
 		4FF328DF254CD5CB007BA843 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF328DE254CD5CB007BA843 /* Preview Assets.xcassets */; };
+		4FF328E8254CD60F007BA843 /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF328E7254CD60F007BA843 /* Conductor.swift */; };
+		4FF328EC254CD677007BA843 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4FF328EB254CD677007BA843 /* AudioKit */; };
+		4FF328EF254CD869007BA843 /* Pad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF328EE254CD869007BA843 /* Pad.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,8 @@
 		4FF328DB254CD5CB007BA843 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FF328DE254CD5CB007BA843 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4FF328E0254CD5CB007BA843 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FF328E7254CD60F007BA843 /* Conductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
+		4FF328EE254CD869007BA843 /* Pad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pad.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FF328EC254CD677007BA843 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +63,8 @@
 				4FF328DB254CD5CB007BA843 /* Assets.xcassets */,
 				4FF328E0254CD5CB007BA843 /* Info.plist */,
 				4FF328DD254CD5CB007BA843 /* Preview Content */,
+				4FF328E7254CD60F007BA843 /* Conductor.swift */,
+				4FF328EE254CD869007BA843 /* Pad.swift */,
 			);
 			path = xyController;
 			sourceTree = "<group>";
@@ -85,6 +93,9 @@
 			dependencies = (
 			);
 			name = xyController;
+			packageProductDependencies = (
+				4FF328EB254CD677007BA843 /* AudioKit */,
+			);
 			productName = xyController;
 			productReference = 4FF328D4254CD5CB007BA843 /* xyController.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +123,9 @@
 				Base,
 			);
 			mainGroup = 4FF328CB254CD5CB007BA843;
+			packageReferences = (
+				4FF328EA254CD677007BA843 /* XCRemoteSwiftPackageReference "AudioKit" */,
+			);
 			productRefGroup = 4FF328D5254CD5CB007BA843 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +153,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FF328DA254CD5CB007BA843 /* ContentView.swift in Sources */,
+				4FF328EF254CD869007BA843 /* Pad.swift in Sources */,
+				4FF328E8254CD60F007BA843 /* Conductor.swift in Sources */,
 				4FF328D8254CD5CB007BA843 /* xyControllerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +344,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4FF328EA254CD677007BA843 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit";
+			requirement = {
+				branch = "v5-main";
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4FF328EB254CD677007BA843 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4FF328EA254CD677007BA843 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4FF328CC254CD5CB007BA843 /* Project object */;
 }

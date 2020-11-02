@@ -13,12 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            HStack{
-                Spacer()
-                Pad()
-                    .frame(width: 100, height: 100)
-                Spacer()
-            }
+            PadControllerView(padController: $conductor.padController)
         }
     }
 }
@@ -26,5 +21,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environmentObject(Conductor.shared)
+            .previewLayout(.fixed(width: 812, height: 375)) //Landscape
     }
 }

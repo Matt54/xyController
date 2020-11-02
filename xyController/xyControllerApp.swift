@@ -11,7 +11,7 @@ import SwiftUI
 struct xyControllerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(Conductor.shared)
         }
     }
 }

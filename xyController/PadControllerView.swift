@@ -35,10 +35,9 @@ struct PadControllerView: View {
                         
                         // Determine which pad was touched and let the padController know the index
                         else{
-                            let n = padController.pads.count
-                            let ratio = Double(value.location.x / geometry.size.width)
-                            let index = Int(ceil( Double(n) * ratio ))
-                            padController.indexSelected = index-1
+                            let xRatioOfWidth = Double(value.location.x / geometry.size.width)
+                            let yRatioOfHeight = 1.0 - Double(value.location.y / geometry.size.height)
+                            padController.handleGestureValues(newX: xRatioOfWidth, newY: yRatioOfHeight)
                         }
                         
                     }

@@ -42,34 +42,50 @@ class Conductor: ObservableObject{
         midi.sendEvent(MIDIEvent(noteOn: midiNoteValue, velocity: 0, channel: 1))
     }
     
+    func sendMidiCC(_ ccVal: UInt8, ccNumber: UInt8 = 0, ccChannel: UInt8 = 0){
+        midi.sendEvent(MIDIEvent(controllerChange: ccNumber, value: ccVal, channel: ccChannel))
+    }
+    
 }
 
 class PadController: ObservableObject{
+    
+    var xVal: Float = 0.0
+    var yVal: Float = 0.0
     
     var rootNote: UInt8 = 72
     
     /// value is -1 on setup
     var indexSelected: Int = -1{
         willSet(newIndexSelected){
-            
             // clear previous value
             if(indexSelected != newIndexSelected && indexSelected != -1){
                 pads[indexSelected].isOn = false
             }
-            
             // set new value
             if(indexSelected != newIndexSelected && newIndexSelected != -1){
                 pads[newIndexSelected].isOn = true
             }
-            
         }
-        
+    }
+    
+    var ccVal: Int = -1{
+        willSet(newCC){
+            if(newCC != ccVal){
+                pads[indexSelected].yValue = newCC
+            }
+        }
     }
     
     public var pads : [PadModel] = []
     
     init(){
         createPads()
+    }
+    
+    func handleGestureValues(newX: Double, newY: Double){
+        indexSelected = Int(ceil( Double(pads.count) * newX )) - 1
+        ccVal = Int(ceil( Double(128) * newY )) - 1
     }
     
     func createPads(_ numberOfPadsToCreate: UInt8 = 12){
@@ -85,13 +101,22 @@ class PadController: ObservableObject{
 
 class PadModel: ObservableObject{
     var noteID: UInt8 = 72
+    
     @Published var isOn: Bool = false{
         didSet{
             if(isOn){
-                onCallback()
+                padOn()
             }else{
-                offCallback()
+                padOff()
             }
+        }
+    }
+    @Published var yValue: Int = 0{
+        didSet{
+            if(yValue < 0){
+                yValue = 0
+            }
+            padValChange()
         }
     }
     
@@ -100,14 +125,20 @@ class PadModel: ObservableObject{
         noteID = noteNumber
     }
     
-    func onCallback(){
+    func padOn(){
         Conductor.shared.sendMidiNoteOn(noteID)
         Conductor.shared.objectWillChange.send()
         print("Note On: " + String(noteID) )
     }
-    func offCallback(){
+    func padOff(){
         Conductor.shared.sendMidiNoteOff(noteID)
         Conductor.shared.objectWillChange.send()
         print("Note Off: " + String(noteID) )
+    }
+    
+    func padValChange(){
+        Conductor.shared.sendMidiCC(UInt8(yValue))
+        Conductor.shared.objectWillChange.send()
+        print("CC Sent: " + String(yValue) )
     }
 }

@@ -111,7 +111,7 @@ class PadModel: ObservableObject{
             }
         }
     }
-    @Published var yValue: Int = 0{
+    var yValue: Int = 0{
         didSet{
             if(yValue < 0){
                 yValue = 0
@@ -120,7 +120,8 @@ class PadModel: ObservableObject{
         }
     }
     
-    init(){}
+    init(){
+    }
     init(noteNumber: UInt8){
         noteID = noteNumber
     }

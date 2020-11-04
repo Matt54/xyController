@@ -16,7 +16,7 @@ struct PadControllerView: View {
             // add all the pads
             HStack(spacing: 0){
                 ForEach(padController.pads.indices, id: \.self){ i in
-                    Pad(model: $padController.pads[i])
+                    Pad(model: $padController.pads[i], ccVal: $padController.ccVal)
                         .frame(width: geometry.size.width/CGFloat(padController.pads.count))
                 }
             }
